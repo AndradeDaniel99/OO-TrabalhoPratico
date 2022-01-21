@@ -93,10 +93,17 @@ public class Tp1 {
 					break;
 					
 				case 2:
-					boolean excluir_count=false;
+					boolean excluir_bool=false;
+					int excluir_count=0;
+					
 					do {
 						clearScreen();
-						System.out.println("Digite o Tema a ser excluido:");
+						if(excluir_count==0) {
+							System.out.println("Digite o Tema a ser excluido:");
+						} else {
+							System.out.println("Tema nao encontrado. Digite novamente:");
+						}
+						
 						String excluir = ler.next();
 						
 						for(int i=0; i<50; i++) {
@@ -112,16 +119,16 @@ public class Tp1 {
 									}
 								}
 								temasEPalavras[i][0]=null;
-								excluir_count=true;
+								excluir_bool=true;
 								clearScreen();
 								System.out.println("Tema excluido com sucesso!");
 								break;
+							} else {
+								excluir_count++;
+								break;
 							}
 						}
-						if(!excluir_count) {
-							System.out.println("Tema nao encontrado. Digite novamente:");
-						}
-					}while(excluir_count==false);
+					}while(excluir_bool==false);
 					break;
 					
 				case 3:
