@@ -134,9 +134,20 @@ public class Tp1 {
 				case 3:
 					clearScreen();
 					System.out.println("Buscar tema:");
-					//String busca = ler.next();
+					String busca = ler.next();
 					for(int i=0; i<50; i++) {
-						System.out.println(temasEPalavras[i][0]);
+						String comparador=temasEPalavras[i][0];
+						int confere_busca=1;
+						confere_busca = busca.compareTo(comparador);
+						if(confere_busca==0) {
+							clearScreen();
+							System.out.println("O tema "+busca+" existe!");
+							break;
+						} else {
+							clearScreen();
+							System.out.println("O tema "+busca+" nao existe.");
+							break;
+						}
 					}
 					break;
 				case 4:
