@@ -10,7 +10,10 @@ import java.util.Random;
 public class Tp1 {
 	
 	static String temasEPalavras[][] = new String [50][51];
-	static String model[] = {"palavra1", "palavra2", "palavra3", "palavra4", "palavra5", "palavra6", "palavra7", "palavra8", "palavra9", "palavra10"};
+	static String t2[] = {"palavra1", "palavra2", "palavra3", "palavra4", "palavra5", "palavra6", "palavra7", "palavra8", "palavra9", "palavra10"};
+	static String t3[] = {"palavra11", "palavra12", "palavra13", "palavra14", "palavra15", "palavra16", "palavra17", "palavra18", "palavra19", "palavra20"};
+	static String t4[] = {"palavra21", "palavra22", "palavra23", "palavra24", "palavra25", "palavra26", "palavra27", "palavra28", "palavra29", "palavra30"};
+	static String t5[] = {"palavra31", "palavra32", "palavra33", "palavra34", "palavra35", "palavra36", "palavra37", "palavra38", "palavra39", "palavra40"};
 	
 	public static void main(String[] args) {
 		
@@ -75,10 +78,11 @@ public class Tp1 {
 	}
 	
 	public static void criarModel(){
-		for(int i=1; i<5; i++) {
-			for(int j=1; j<11; j++) {
-				temasEPalavras[i][j]=model[j-1];
-			}
+		for(int i=1; i<=10; i++) {
+			temasEPalavras[1][i]=t2[i-1];
+			temasEPalavras[2][i]=t3[i-1];
+			temasEPalavras[3][i]=t4[i-1];
+			temasEPalavras[4][i]=t5[i-1];
 		}
 	}
 	
@@ -127,7 +131,7 @@ public class Tp1 {
 					
 				case 2:
 					boolean excluir_bool=false;
-					int excluir_count=0;
+					int excluir_count=0, no_excluir=0;
 					confere_tema=1;
 					do {
 						clearScreen();
@@ -139,6 +143,8 @@ public class Tp1 {
 						
 						String excluir = ler.next();
 						
+						no_excluir=0;
+						
 						for(int i=0; i<50; i++) {
 							String comparador=temasEPalavras[i][0];
 							
@@ -149,19 +155,25 @@ public class Tp1 {
 							if(confere_tema==0){
 								for(int j=1; j<51; j++) {
 									if(temasEPalavras[i][j]!=null) {
-										System.out.println("Não foi possível excluir o tema. Verifique se existem palavras cadastradas nesse tema.");
+										System.out.println("Não foi possível excluir o tema. Verifique se existem palavras cadastradas nesse tema.\n\n");
+										no_excluir++;
 										break;
 									}
 								}
-								temasEPalavras[i][0]=null;
-								excluir_bool=true;
-								clearScreen();
-								System.out.println("Tema excluido com sucesso!");
-								break;
+								if(no_excluir==0) {
+									temasEPalavras[i][0]=null;
+									excluir_bool=true;
+									clearScreen();
+									System.out.println("Tema excluido com sucesso!\n\n");
+									break;
+								}
+								
 							} else {
 								excluir_count++;
-								break;
 							}
+						}
+						if(no_excluir!=0) {
+							break;
 						}
 					}while(excluir_bool==false);
 					break;
@@ -179,13 +191,13 @@ public class Tp1 {
 						}
 						if(confere_busca==0) {
 							clearScreen();
-							System.out.println("O tema "+busca+" existe!");
+							System.out.println("O tema "+busca+" existe!\n\n");
 							break;
 						} 
 					}
 					if(confere_busca!=0) {
 						clearScreen();
-						System.out.println("O tema "+busca+" nao existe.");
+						System.out.println("O tema "+busca+" nao existe.\n\n");
 					}
 					break;
 				case 4:
@@ -259,6 +271,7 @@ public class Tp1 {
 					
 					do {
 						clearScreen();
+						
 						if(excluir_count==0) {
 							System.out.println("Digite a palavra a ser excluida:");
 						} else {
@@ -281,11 +294,10 @@ public class Tp1 {
 									break;
 								} else {
 									excluir_count++;
-									break;
 								}
 							}
-							break;
 						}
+					
 					}while(excluir_bool==false);
 					
 					break;
@@ -305,7 +317,7 @@ public class Tp1 {
 							}
 							if(confere_busca==0) {
 								clearScreen();
-								System.out.println("Palavra encontrada no tema "+temasEPalavras[i][0]);
+								System.out.print("Palavra encontrada no tema "+temasEPalavras[i][0]+"\n\n\n");
 								break;
 							} 
 						}
