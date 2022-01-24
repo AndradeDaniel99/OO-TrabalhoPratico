@@ -66,6 +66,7 @@ public class Tp1 {
 			
 			Scanner ler = new Scanner(System.in);
 			menu = ler.nextInt();
+			int confere_tema=1;
 			
 			switch(menu) {
 			
@@ -81,9 +82,12 @@ public class Tp1 {
 							System.out.println("Tema cadastrado com sucesso!");
 							break;
 						}
+						
 						String comparador=temasEPalavras[i][0];
-						int confere_tema=1;
-						confere_tema = tema.compareTo(comparador);
+						if(comparador!=null) {
+							confere_tema = tema.compareTo(comparador);
+						}
+
 						if(confere_tema==0) {
 							clearScreen();
 							System.out.println("Impossivel. Esse tema ja existe.");
@@ -95,7 +99,7 @@ public class Tp1 {
 				case 2:
 					boolean excluir_bool=false;
 					int excluir_count=0;
-					
+					confere_tema=1;
 					do {
 						clearScreen();
 						if(excluir_count==0) {
@@ -108,8 +112,10 @@ public class Tp1 {
 						
 						for(int i=0; i<50; i++) {
 							String comparador=temasEPalavras[i][0];
-							int confere_tema=1;
-							confere_tema = excluir.compareTo(comparador);
+							
+							if(comparador!=null) {
+								confere_tema = excluir.compareTo(comparador);
+							}
 						
 							if(confere_tema==0){
 								for(int j=1; j<51; j++) {
@@ -135,20 +141,22 @@ public class Tp1 {
 					clearScreen();
 					System.out.println("Buscar tema:");
 					String busca = ler.next();
+					int confere_busca=1;
 					
 					for(int i=0; i<50; i++) {
 						String comparador=temasEPalavras[i][0];
-						int confere_busca=1;
-						confere_busca = busca.compareTo(comparador);
+						if(comparador!=null) {
+							confere_busca = busca.compareTo(comparador);
+						}
 						if(confere_busca==0) {
 							clearScreen();
 							System.out.println("O tema "+busca+" existe!");
 							break;
-						} else {
-							clearScreen();
-							System.out.println("O tema "+busca+" nao existe.");
-							break;
-						}
+						} 
+					}
+					if(confere_busca!=0) {
+						clearScreen();
+						System.out.println("O tema "+busca+" nao existe.");
 					}
 					break;
 				case 4:
@@ -176,6 +184,7 @@ public class Tp1 {
 			
 			Scanner ler = new Scanner(System.in);
 			menu = ler.nextInt();
+			int confere_palavra=1;
 			
 			switch(menu) {
 			
@@ -199,9 +208,12 @@ public class Tp1 {
 							System.out.println("Palavra cadastrada com sucesso!");
 							break;
 						}
+						
 						String comparador=temasEPalavras[tema-1][j];
-						int confere_palavra=1;
-						confere_palavra = palavra.compareTo(comparador);
+						if(comparador!=null) {
+							confere_palavra = palavra.compareTo(comparador);
+						}
+						
 						if(confere_palavra==0) {
 							clearScreen();
 							System.out.println("Impossivel. Essa palavra ja existe.");
@@ -211,71 +223,91 @@ public class Tp1 {
 					break;
 					
 				case 2:
-					/*
+					
 					boolean excluir_bool=false;
 					int excluir_count=0;
+					confere_palavra=1;
 					
 					do {
 						clearScreen();
 						if(excluir_count==0) {
-							System.out.println("Digite o Tema a ser excluido:");
+							System.out.println("Digite a palavra a ser excluida:");
 						} else {
-							System.out.println("Tema nao encontrado. Digite novamente:");
+							System.out.println("Palavra nao encontrada. Digite novamente:");
 						}
 						
 						String excluir = ler.next();
 						
 						for(int i=0; i<50; i++) {
-							String comparador=temasEPalavras[i][0];
-							int confere_tema=1;
-							confere_tema = excluir.compareTo(comparador);
-						
-							if(confere_tema==0){
-								for(int j=1; j<51; j++) {
-									if(temasEPalavras[i][j]!=null) {
-										System.out.println("Não foi possível excluir o tema. Verifique se existem palavras cadastradas nesse tema.");
-										break;
-									}
+							for(int j=1; j<51; j++) {
+								String comparador=temasEPalavras[i][j];
+								if(comparador!=null) {
+									confere_palavra = excluir.compareTo(comparador);
 								}
-								temasEPalavras[i][0]=null;
-								excluir_bool=true;
-								clearScreen();
-								System.out.println("Tema excluido com sucesso!");
-								break;
-							} else {
-								excluir_count++;
-								break;
+								if(confere_palavra==0){
+									temasEPalavras[i][j]=null;
+									excluir_bool=true;
+									clearScreen();
+									System.out.println("Palavra excluida com sucesso!");
+									break;
+								} else {
+									excluir_count++;
+									break;
+								}
 							}
+							break;
 						}
 					}while(excluir_bool==false);
-					*/
+					
 					break;
 					
 				case 3:
 					clearScreen();
-					/*
-					System.out.println("Buscar tema:");
+					
+					System.out.println("Buscar palavra:");
 					String busca = ler.next();
+					int confere_busca=1;
 					
 					for(int i=0; i<50; i++) {
-						String comparador=temasEPalavras[i][0];
-						int confere_busca=1;
-						confere_busca = busca.compareTo(comparador);
+						for(int j=0; j<51; j++) {
+							String comparador=temasEPalavras[i][j];
+							if(comparador!=null) {
+								confere_busca = busca.compareTo(comparador);
+							}
+							if(confere_busca==0) {
+								clearScreen();
+								System.out.println("Palavra encontrada no tema "+temasEPalavras[i][0]);
+								break;
+							} 
+						}
 						if(confere_busca==0) {
-							clearScreen();
-							System.out.println("O tema "+busca+" existe!");
-							break;
-						} else {
-							clearScreen();
-							System.out.println("O tema "+busca+" nao existe.");
 							break;
 						}
 					}
-					*/
+					if(confere_busca != 0) {
+						clearScreen();
+						System.out.println("Palavra não encontrada");
+						break;
+					}					
 					break;
+					
 				case 4:
 					clearScreen();
+					System.out.println("Escolha um tema para ver suas palavras associadas:");
+					for(int i=0; i<50; i++) {
+						if(temasEPalavras[i][0]!=null) {
+							System.out.println((i+1)+". "+temasEPalavras[i][0]);
+						}
+					}
+					int listagem = ler.nextInt();
+					
+					for(int j=1; j<51; j++) {
+						if(temasEPalavras[listagem-1][j]!=null) {
+							System.out.println((j)+". "+temasEPalavras[listagem-1][j]);
+						}
+					}
 					break;
+					
 				case 5:
 					clearScreen();
 					break;
