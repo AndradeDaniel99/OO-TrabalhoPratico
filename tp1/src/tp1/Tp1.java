@@ -5,12 +5,33 @@ O seu jogo deve exibir um menu inicial com as opções:
 package tp1;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class Tp1 {
 	
 	static String temasEPalavras[][] = new String [50][51];
+	static String model[] = {"palavra1", "palavra2", "palavra3", "palavra4", "palavra5", "palavra6", "palavra7", "palavra8", "palavra9", "palavra10"};
 	
 	public static void main(String[] args) {
+		
+		temasEPalavras[0][0]= "animais";
+		temasEPalavras[1][0]= "tema2";
+		temasEPalavras[2][0]= "tema3";
+		temasEPalavras[3][0]= "tema4";
+		temasEPalavras[4][0]= "tema5";
+		
+		temasEPalavras[0][1]= "gato";
+		temasEPalavras[0][2]= "cachorro";
+		temasEPalavras[0][3]= "rinoceronte";
+		temasEPalavras[0][4]= "baleia";
+		temasEPalavras[0][5]= "hipopotamo";
+		temasEPalavras[0][6]= "coruja";
+		temasEPalavras[0][7]= "lobo";
+		temasEPalavras[0][8]= "touro";
+		temasEPalavras[0][9]= "serpente";
+		temasEPalavras[0][10]= "tigre";
+		
+		criarModel();
 		
 		Scanner ler = new Scanner(System.in);
 		
@@ -34,7 +55,7 @@ public class Tp1 {
 					break;
 				case 3:
 					clearScreen();
-					//jogar();
+					jogar();
 					break;
 				case 4:
 					clearScreen();
@@ -50,6 +71,14 @@ public class Tp1 {
 	public static void clearScreen() {
 		for(int i=0; i<30; i++) {
 			System.out.print("\n");
+		}
+	}
+	
+	public static void criarModel(){
+		for(int i=1; i<5; i++) {
+			for(int j=1; j<11; j++) {
+				temasEPalavras[i][j]=model[j-1];
+			}
 		}
 	}
 	
@@ -301,11 +330,14 @@ public class Tp1 {
 					}
 					int listagem = ler.nextInt();
 					
+					System.out.print("\n\n\n");
+					System.out.println(temasEPalavras[listagem-1][0]);
 					for(int j=1; j<51; j++) {
 						if(temasEPalavras[listagem-1][j]!=null) {
 							System.out.println((j)+". "+temasEPalavras[listagem-1][j]);
 						}
 					}
+					System.out.print("\n\n\n");
 					break;
 					
 				case 5:
@@ -320,6 +352,114 @@ public class Tp1 {
 	}
 	
 	public static void jogar() {
+		clearScreen();
+		
+		int tema, game=0, registro=0, confere_palavra=1, vitoria=0, tente=0, erro=0, checkError=0;
+		Scanner ler = new Scanner(System.in);
+		
+		do {
+			System.out.println("Escolha um tema para jogar:");
+			for(int i=0; i<50; i++) {
+				if(temasEPalavras[i][0]!=null) {
+					System.out.println((i+1)+". "+temasEPalavras[i][0]);
+				}
+			}
+			tema = ler.nextInt();
+			
+			for(int j=1; j<51; j++) {
+				if(temasEPalavras[tema-1][j]!=null) {
+					registro++;
+				}
+			}
+			
+			Random generator = new Random();
+			int randomIndex = generator.nextInt(registro);
+			if(randomIndex==0) {
+				randomIndex=1;
+			}
+			
+			String palavra = temasEPalavras[tema-1][randomIndex];
+			char[] forca = palavra.toCharArray();
+			
+			clearScreen();
+			
+			System.out.println("Tema: "+temasEPalavras[tema-1][0]);
+			System.out.println("____________");
+			System.out.print("\n");
+			System.out.print("Regras: \n       Escolha uma letra por vez. \n       Voce pode errar até 5 vezes antes de perder.\n");
+			System.out.println("____________________________________________________");
+			System.out.print("\n\n");
+			
+			char[] display = new char[palavra.length()];
+			for(int i=0; i<display.length; i++) {
+				display[i]='_';
+			}
+			do {
+				clearScreen();
+				System.out.println("Tema: "+temasEPalavras[tema-1][0]);
+				System.out.println("____________");
+				System.out.print("\n");
+				
+				for(int i=0; i<display.length; i++) {
+					System.out.print(display[i]+" ");
+				}
+				System.out.print("\n");
+				if(tente!=0){
+					System.out.println("Tente outra letra!");
+				}
+				
+				System.out.println("Erros: "+erro);
+				
+				String entrada = ler.next();
+				char letra = entrada.charAt(0);
+				
+				
+				for(int i=0; i<palavra.length(); i++) {
+					if(display[i]==letra) {
+						tente++;
+						break;
+					}
+					if(forca[i]==letra) {
+						display[i]=letra;
+						vitoria++;
+						tente=0;
+					}else {
+						checkError++;
+					}
+				}
+				if(checkError==palavra.length()) {
+					erro++;
+				}
+			checkError=0;
+			if(erro==6) {
+				break;
+			}
+				
+			}while(vitoria<palavra.length());
+			System.out.print("\n\n");
+			if(erro==6) {
+				System.out.println("Voce perdeu!");
+			}else {
+				System.out.println("Parabens! Voce acertou a palavra "+palavra);
+			}
+			
+			System.out.print("\n\n");
+			System.out.print("1. Jogar novamente \n2. Sair\n");
+			tema = ler.nextInt();
+			
+			if(tema==1) {
+				clearScreen();
+			} else if(tema==2) {
+				game=1;
+				clearScreen();
+			}
+			registro=0;
+			vitoria=0;
+			tente=0;
+			erro=0;
+			
+		}while(game==0);
+		
 		
 	}
 }
