@@ -5,6 +5,7 @@ O seu jogo deve exibir um menu inicial com as opções:
 package tp1;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 import java.util.Random;
 
 public class Tp1 {
@@ -16,7 +17,6 @@ public class Tp1 {
 	static String t5[] = {"palavra31", "palavra32", "palavra33", "palavra34", "palavra35", "palavra36", "palavra37", "palavra38", "palavra39", "palavra40"};
 	
 	public static void main(String[] args) {
-		
 		temasEPalavras[0][0]= "animais";
 		temasEPalavras[1][0]= "tema2";
 		temasEPalavras[2][0]= "tema3";
@@ -31,14 +31,12 @@ public class Tp1 {
 		temasEPalavras[0][6]= "coruja";
 		temasEPalavras[0][7]= "lobo";
 		temasEPalavras[0][8]= "touro";
-		temasEPalavras[0][9]= "serpente";
+		temasEPalavras[0][9]= "tartaruga";
 		temasEPalavras[0][10]= "tigre";
-		
 		criarModel();
 		
 		Scanner ler = new Scanner(System.in);
-		
-		int menu;
+		int var=0, menu;
 		
 		do {
 			System.out.println("1. Gerenciar Temas");
@@ -46,25 +44,37 @@ public class Tp1 {
 			System.out.println("3. Jogar");
 			System.out.println("4. Sair");
 			
-			menu = ler.nextInt();
+			boolean leituraRealizada=false;
+			do {
+				try {
+					var = ler.nextInt();
+					if(var>0 && var<5) {
+						leituraRealizada = true;
+					}
+				} catch(InputMismatchException erro){
+					leituraRealizada = false;
+					ler.nextLine();
+					System.out.println("Caractere inválido. Digite um numero entre 1 e 4: ");
+				}
+			}while(!leituraRealizada);
+			
+			menu = var;
 			
 			switch(menu) {
 				case 1:
 					gerenciarTemas();
 					break;
 				case 2:
-					clearScreen();
 					gerenciarPalavras();
 					break;
 				case 3:
-					clearScreen();
 					jogar();
 					break;
 				case 4:
 					clearScreen();
 					break;
 				default:
-					while(menu>4 || menu<0) {
+					while(menu>4 || menu<=0) {
 						menu = ler.nextInt();
 					}
 			}
@@ -89,7 +99,8 @@ public class Tp1 {
 	public static void gerenciarTemas() {
 		clearScreen();
 		
-		int menu;
+		int menu, var=0;
+		Scanner ler = new Scanner(System.in);
 		
 		do {
 			System.out.println("1. Cadastrar Tema");
@@ -97,108 +108,34 @@ public class Tp1 {
 			System.out.println("3. Buscar Tema");
 			System.out.println("4. Voltar");
 			
-			Scanner ler = new Scanner(System.in);
-			menu = ler.nextInt();
-			int confere_tema=1;
+			boolean leituraRealizada=false;
+			do {
+				try {
+					var = ler.nextInt();
+					if(var>0 && var<5) {
+						leituraRealizada = true;
+					}
+				} catch(InputMismatchException erro){
+					leituraRealizada = false;
+					ler.nextLine();
+					System.out.println("Caractere inválido. Digite um numero entre 1 e 4: ");
+				}
+			}while(!leituraRealizada);
+
+			menu = var;
 			
 			switch(menu) {
 			
 				case 1:
-					clearScreen();
-					System.out.println("Digite o Tema a ser cadastrado:");
-					String tema = ler.next();
-					
-					for(int i=0; i<50; i++) {
-						if(temasEPalavras[i][0]==null){
-							temasEPalavras[i][0]=tema;
-							clearScreen();
-							System.out.println("Tema cadastrado com sucesso!");
-							break;
-						}
-						
-						String comparador=temasEPalavras[i][0];
-						if(comparador!=null) {
-							confere_tema = tema.compareTo(comparador);
-						}
-
-						if(confere_tema==0) {
-							clearScreen();
-							System.out.println("Impossivel. Esse tema ja existe.");
-							break;
-						}
-					}
+					cadastrarTemas();
 					break;
 					
 				case 2:
-					boolean excluir_bool=false;
-					int excluir_count=0, no_excluir=0;
-					confere_tema=1;
-					do {
-						clearScreen();
-						if(excluir_count==0) {
-							System.out.println("Digite o Tema a ser excluido:");
-						} else {
-							System.out.println("Tema nao encontrado. Digite novamente:");
-						}
-						
-						String excluir = ler.next();
-						
-						no_excluir=0;
-						
-						for(int i=0; i<50; i++) {
-							String comparador=temasEPalavras[i][0];
-							
-							if(comparador!=null) {
-								confere_tema = excluir.compareTo(comparador);
-							}
-						
-							if(confere_tema==0){
-								for(int j=1; j<51; j++) {
-									if(temasEPalavras[i][j]!=null) {
-										System.out.println("Não foi possível excluir o tema. Verifique se existem palavras cadastradas nesse tema.\n\n");
-										no_excluir++;
-										break;
-									}
-								}
-								if(no_excluir==0) {
-									temasEPalavras[i][0]=null;
-									excluir_bool=true;
-									clearScreen();
-									System.out.println("Tema excluido com sucesso!\n\n");
-									break;
-								}
-								
-							} else {
-								excluir_count++;
-							}
-						}
-						if(no_excluir!=0) {
-							break;
-						}
-					}while(excluir_bool==false);
+					excluirTemas();
 					break;
 					
 				case 3:
-					clearScreen();
-					System.out.println("Buscar tema:");
-					String busca = ler.next();
-					int confere_busca=1;
-					
-					for(int i=0; i<50; i++) {
-						String comparador=temasEPalavras[i][0];
-						if(comparador!=null) {
-							confere_busca = busca.compareTo(comparador);
-						}
-						if(confere_busca==0) {
-							clearScreen();
-							System.out.println("O tema "+busca+" existe!\n\n");
-							break;
-						} 
-					}
-					if(confere_busca!=0) {
-						clearScreen();
-						System.out.println("O tema "+busca+" nao existe.\n\n");
-					}
+					buscarTemas();
 					break;
 				case 4:
 					clearScreen();
@@ -211,10 +148,113 @@ public class Tp1 {
 		}while(menu>0 && menu<4);
 	}
 	
+	public static void cadastrarTemas() {
+		clearScreen();
+		System.out.println("Digite o Tema a ser cadastrado:");
+		Scanner ler = new Scanner(System.in);
+		String tema = ler.next();
+		int confere_tema=1;
+		
+		for(int i=0; i<50; i++) {
+			if(temasEPalavras[i][0]==null){
+				temasEPalavras[i][0]=tema;
+				clearScreen();
+				System.out.println("Tema cadastrado com sucesso!");
+				break;
+			}
+			
+			String comparador=temasEPalavras[i][0];
+			if(comparador!=null) {
+				confere_tema = tema.compareTo(comparador);
+			}
+
+			if(confere_tema==0) {
+				clearScreen();
+				System.out.println("Impossivel. Esse tema ja existe.");
+				break;
+			}
+		}
+	}
+	
+	public static void excluirTemas() {
+		boolean excluir_bool=false;
+		int excluir_count=0, no_excluir=0;
+		int confere_tema=1;
+		Scanner ler = new Scanner(System.in);
+		do {
+			clearScreen();
+			if(excluir_count==0) {
+				System.out.println("Digite o Tema a ser excluido:");
+			} else {
+				System.out.println("Tema nao encontrado. Digite novamente:");
+			}
+			
+			String excluir = ler.next();
+			
+			no_excluir=0;
+			
+			for(int i=0; i<50; i++) {
+				String comparador=temasEPalavras[i][0];
+				
+				if(comparador!=null) {
+					confere_tema = excluir.compareTo(comparador);
+				}
+			
+				if(confere_tema==0){
+					for(int j=1; j<51; j++) {
+						if(temasEPalavras[i][j]!=null) {
+							System.out.println("Não foi possível excluir o tema. Verifique se existem palavras cadastradas nesse tema.\n\n");
+							no_excluir++;
+							break;
+						}
+					}
+					if(no_excluir==0) {
+						temasEPalavras[i][0]=null;
+						excluir_bool=true;
+						clearScreen();
+						System.out.println("Tema excluido com sucesso!\n\n");
+						break;
+					}
+					
+				} else {
+					excluir_count++;
+				}
+			}
+			if(no_excluir!=0) {
+				break;
+			}
+		}while(excluir_bool==false);
+	}
+	
+	public static void buscarTemas() {
+		clearScreen();
+		Scanner ler = new Scanner(System.in);
+		System.out.println("Buscar tema:");
+		String busca = ler.next();
+		int confere_busca=1;
+		
+		for(int i=0; i<50; i++) {
+			String comparador=temasEPalavras[i][0];
+			if(comparador!=null) {
+				confere_busca = busca.compareTo(comparador);
+			}
+			if(confere_busca==0) {
+				clearScreen();
+				System.out.println("O tema "+busca+" existe!\n\n");
+				break;
+			} 
+		}
+		if(confere_busca!=0) {
+			clearScreen();
+			System.out.println("O tema "+busca+" nao existe.\n\n");
+		}
+	}
+	
 	public static void gerenciarPalavras() {
 		clearScreen();
 		
-		int menu;
+		int menu, var = 0;
+		Scanner ler = new Scanner(System.in);
 		
 		do {
 			System.out.println("1. Cadastrar palavra");
@@ -223,133 +263,38 @@ public class Tp1 {
 			System.out.println("4. Listar todas as palavras de um tema");
 			System.out.println("5. Voltar");
 			
-			Scanner ler = new Scanner(System.in);
-			menu = ler.nextInt();
-			int confere_palavra=1;
+			boolean leituraRealizada=false;
+			do {
+				try {
+					var = ler.nextInt();
+					if(var>0 && var<=5) {
+						leituraRealizada = true;
+					}
+				} catch(InputMismatchException erro){
+					leituraRealizada = false;
+					ler.nextLine();
+					System.out.println("Caractere inválido. Digite um numero entre 1 e 5: ");
+				}
+			}while(!leituraRealizada);
+
+			menu = var;
 			
 			switch(menu) {
 			
 				case 1:
-					clearScreen();
-					System.out.println("Primeiro escolha um tema:");
-					for(int i=0; i<50; i++) {
-						if(temasEPalavras[i][0]!=null) {
-							System.out.println((i+1)+". "+temasEPalavras[i][0]);
-						}
-					}
-					int tema = ler.nextInt();
-					
-					System.out.println("Digite a palavra que deseja cadastrar:");
-					String palavra = ler.next();
-					
-					for(int j=1; j<51; j++) {
-						if(temasEPalavras[tema-1][j]==null){
-							temasEPalavras[tema-1][j]=palavra;
-							clearScreen();
-							System.out.println("Palavra cadastrada com sucesso!");
-							break;
-						}
-						
-						String comparador=temasEPalavras[tema-1][j];
-						if(comparador!=null) {
-							confere_palavra = palavra.compareTo(comparador);
-						}
-						
-						if(confere_palavra==0) {
-							clearScreen();
-							System.out.println("Impossivel. Essa palavra ja existe.");
-							break;
-						}	
-					}
+					cadastrarPalavra();
 					break;
 					
 				case 2:
-					
-					boolean excluir_bool=false;
-					int excluir_count=0;
-					confere_palavra=1;
-					
-					do {
-						clearScreen();
-						
-						if(excluir_count==0) {
-							System.out.println("Digite a palavra a ser excluida:");
-						} else {
-							System.out.println("Palavra nao encontrada. Digite novamente:");
-						}
-						
-						String excluir = ler.next();
-						
-						for(int i=0; i<50; i++) {
-							for(int j=1; j<51; j++) {
-								String comparador=temasEPalavras[i][j];
-								if(comparador!=null) {
-									confere_palavra = excluir.compareTo(comparador);
-								}
-								if(confere_palavra==0){
-									temasEPalavras[i][j]=null;
-									excluir_bool=true;
-									clearScreen();
-									System.out.println("Palavra excluida com sucesso!");
-									break;
-								} else {
-									excluir_count++;
-								}
-							}
-						}
-					
-					}while(excluir_bool==false);
-					
+					excluirPalavra();
 					break;
 					
 				case 3:
-					clearScreen();
-					
-					System.out.println("Buscar palavra:");
-					String busca = ler.next();
-					int confere_busca=1;
-					
-					for(int i=0; i<50; i++) {
-						for(int j=0; j<51; j++) {
-							String comparador=temasEPalavras[i][j];
-							if(comparador!=null) {
-								confere_busca = busca.compareTo(comparador);
-							}
-							if(confere_busca==0) {
-								clearScreen();
-								System.out.print("Palavra encontrada no tema "+temasEPalavras[i][0]+"\n\n\n");
-								break;
-							} 
-						}
-						if(confere_busca==0) {
-							break;
-						}
-					}
-					if(confere_busca != 0) {
-						clearScreen();
-						System.out.println("Palavra não encontrada");
-						break;
-					}					
+					buscarPalavra();					
 					break;
 					
 				case 4:
-					clearScreen();
-					System.out.println("Escolha um tema para ver suas palavras associadas:");
-					for(int i=0; i<50; i++) {
-						if(temasEPalavras[i][0]!=null) {
-							System.out.println((i+1)+". "+temasEPalavras[i][0]);
-						}
-					}
-					int listagem = ler.nextInt();
-					
-					System.out.print("\n\n\n");
-					System.out.println(temasEPalavras[listagem-1][0]);
-					for(int j=1; j<51; j++) {
-						if(temasEPalavras[listagem-1][j]!=null) {
-							System.out.println((j)+". "+temasEPalavras[listagem-1][j]);
-						}
-					}
-					System.out.print("\n\n\n");
+					listagemPalavras();
 					break;
 					
 				case 5:
@@ -361,6 +306,129 @@ public class Tp1 {
 					}
 			}
 		}while(menu>0 && menu<5);
+	}
+	
+	public static void cadastrarPalavra() {
+		clearScreen();
+		int confere_palavra=1;
+		Scanner ler = new Scanner(System.in);
+		System.out.println("Primeiro escolha um tema:");
+		for(int i=0; i<50; i++) {
+			if(temasEPalavras[i][0]!=null) {
+				System.out.println((i+1)+". "+temasEPalavras[i][0]);
+			}
+		}
+		int tema = ler.nextInt();
+		
+		System.out.println("Digite a palavra que deseja cadastrar:");
+		String palavra = ler.next();
+		
+		for(int j=1; j<51; j++) {
+			if(temasEPalavras[tema-1][j]==null){
+				temasEPalavras[tema-1][j]=palavra;
+				clearScreen();
+				System.out.println("Palavra cadastrada com sucesso!");
+				break;
+			}
+			
+			String comparador=temasEPalavras[tema-1][j];
+			if(comparador!=null) {
+				confere_palavra = palavra.compareTo(comparador);
+			}
+			
+			if(confere_palavra==0) {
+				clearScreen();
+				System.out.println("Impossivel. Essa palavra ja existe.");
+				break;
+			}	
+		}
+	}
+	
+	public static void excluirPalavra() {
+		boolean excluir_bool=false;
+		int excluir_count=0;
+		int confere_palavra=1;
+		Scanner ler = new Scanner(System.in);
+		
+		do {
+			clearScreen();
+			
+			if(excluir_count==0) {
+				System.out.println("Digite a palavra a ser excluida:");
+			} else {
+				System.out.println("Palavra nao encontrada. Digite novamente:");
+			}
+			
+			String excluir = ler.next();
+			
+			for(int i=0; i<50; i++) {
+				for(int j=1; j<51; j++) {
+					String comparador=temasEPalavras[i][j];
+					if(comparador!=null) {
+						confere_palavra = excluir.compareTo(comparador);
+					}
+					if(confere_palavra==0){
+						temasEPalavras[i][j]=null;
+						excluir_bool=true;
+						clearScreen();
+						System.out.println("Palavra excluida com sucesso!");
+						break;
+					} else {
+						excluir_count++;
+					}
+				}
+			}
+		}while(excluir_bool==false);
+	}
+	
+	public static void buscarPalavra() {
+		clearScreen();
+		Scanner ler = new Scanner(System.in);
+		System.out.println("Buscar palavra:");
+		String busca = ler.next();
+		int confere_busca=1;
+		
+		for(int i=0; i<50; i++) {
+			for(int j=0; j<51; j++) {
+				String comparador=temasEPalavras[i][j];
+				if(comparador!=null) {
+					confere_busca = busca.compareTo(comparador);
+				}
+				if(confere_busca==0) {
+					clearScreen();
+					System.out.print("Palavra encontrada no tema "+temasEPalavras[i][0]+"\n\n\n");
+					break;
+				} 
+			}
+			if(confere_busca==0) {
+				break;
+			}
+		}
+		if(confere_busca != 0) {
+			clearScreen();
+			System.out.println("Palavra não encontrada");
+		}
+	}
+	
+	public static void listagemPalavras() {
+		clearScreen();
+		Scanner ler = new Scanner(System.in);
+		System.out.println("Escolha um tema para ver suas palavras associadas:");
+		for(int i=0; i<50; i++) {
+			if(temasEPalavras[i][0]!=null) {
+				System.out.println((i+1)+". "+temasEPalavras[i][0]);
+			}
+		}
+		int listagem = ler.nextInt();
+		
+		System.out.print("\n\n\n");
+		System.out.println(temasEPalavras[listagem-1][0]);
+		for(int j=1; j<51; j++) {
+			if(temasEPalavras[listagem-1][j]!=null) {
+				System.out.println((j)+". "+temasEPalavras[listagem-1][j]);
+			}
+		}
+		System.out.print("\n\n\n");
 	}
 	
 	public static void jogar() {
