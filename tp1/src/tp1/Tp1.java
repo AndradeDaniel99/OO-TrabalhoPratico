@@ -450,9 +450,9 @@ public class Tp1 {
 			}while(vitoria<palavra.length());
 			System.out.print("\n\n");
 			if(erro==6) {
-				System.out.println("Voce perdeu!");
+				System.out.println("Você perdeu! Deseja Deseja jogar novamente?");
 			}else {
-				System.out.println("Parabens! Voce acertou a palavra "+palavra);
+				System.out.println("Parabéns! Você acertou a palavra! Deseja jogar novamente?");
 			}
 			
 			System.out.print("\n\n");
