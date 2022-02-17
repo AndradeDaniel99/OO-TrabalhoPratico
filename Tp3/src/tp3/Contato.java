@@ -66,6 +66,4 @@ public abstract class Contato {
 	public void setTelefone(int telefone) {
 		this.telefone = telefone;
 	}
-	
-	
 }
