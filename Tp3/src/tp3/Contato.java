@@ -11,6 +11,25 @@ public abstract class Contato {
 	protected int telefone;
 	
 	
+	public Contato() {
+		nome ="desconhecido";
+		endereco = "desconhecido";
+		email = "desconhecido";
+		biografia = "desconhecido";
+		cpf = 0;
+		telefone = 0;
+	}
+	
+	public Contato(String nome, String endereco, String email, String biografia, int cpf, int telefone) {
+		this.nome = nome;
+		this.endereco = endereco;
+		this.email = email;
+		this.biografia = biografia;
+		this.cpf = cpf;
+		this.telefone = telefone;
+	}
+	
+	
 	public String getNome() {
 		return nome;
 	}
