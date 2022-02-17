@@ -1,31 +1,43 @@
 package tp3;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Order {
 
-	private Date data_emissao;
-	private Date data_order;
+	private Calendar data_emissao = Calendar.getInstance();
+	private Calendar data_order = Calendar.getInstance();
 	private String status;
 	private Cliente cliente;
 	private Worker worker;
-	private float valor;
+	private double valor;
 	private double rate;
 	
 	
+	public Order(Cliente cliente, Worker worker) {
+		this.cliente = cliente;
+		this.worker = worker;
+		status = "Aberta";
+		valor = 0.00;
+		rate = 0.00;
+	}
 	
 	
+	public String toString() {
+		return "data de emissao: "+data_emissao+"\nData marcada: "+data_order+"\nStatus: "+status+"\nCliente: "+
+	cliente.getNome()+"\nMarido: "+worker.getNome()+"\nValor: "+valor+"\nAvaliacao: "+rate+"\n";
+	}
 	
-	public Date getData_emissao() {
+	
+	public Calendar getData_emissao() {
 		return data_emissao;
 	}
-	public void setData_emissao(Date data_emissao) {
+	public void setData_emissao(Calendar data_emissao) {
 		this.data_emissao = data_emissao;
 	}
-	public Date getData_order() {
+	public Calendar getData_order() {
 		return data_order;
 	}
-	public void setData_order(Date data_order) {
+	public void setData_order(Calendar data_order) {
 		this.data_order = data_order;
 	}
 	public String getStatus() {
@@ -46,7 +58,7 @@ public class Order {
 	public void setWorker(Worker worker) {
 		this.worker = worker;
 	}
-	public float getValor() {
+	public double getValor() {
 		return valor;
 	}
 	public void setValor(float valor) {

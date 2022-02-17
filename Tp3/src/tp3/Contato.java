@@ -30,6 +30,12 @@ public abstract class Contato {
 	}
 	
 	
+	public String toString() {
+		return "nome: "+ nome + "\nendereco: " + endereco + "\nemail: " + 
+				email+ "\nbiografia: " + biografia+ "\ncpf: " +cpf+ "\ntelefone: " +telefone+ "\n"; 
+	}
+	
+	
 	public String getNome() {
 		return nome;
 	}
