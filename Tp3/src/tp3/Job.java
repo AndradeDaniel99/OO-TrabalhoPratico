@@ -3,7 +3,7 @@ package tp3;
 public class Job {
 
 	private String nome;
-	private int ids[] = new int[1000];
+	private int cpfs[] = new int[10];
 	private double rate;
 	
 	
@@ -15,7 +15,7 @@ public class Job {
 	
 	
 	public String toString() {
-		return "Especializacao: "+nome+"\nAvaliacao: "+rate+"\n";
+		return "JOB\nEspecializacao: "+getNome()+"\nAvaliacao: "+getRate()+"\n";
 	}
 	
 	
@@ -27,10 +27,10 @@ public class Job {
 		this.nome = nome;
 	}
 	public int[] getIds() {
-		return ids;
+		return cpfs;
 	}
 	public void setIds(int[] ids) {
-		this.ids = ids;
+		this.cpfs = ids;
 	}
 	public double getRate() {
 		return rate;
@@ -38,4 +38,25 @@ public class Job {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
+	
+	
+	// CRUD
+		public static Job cadastrarJob(String nome) {
+			Job job = new Job(nome);
+			return job;
+		}
+		
+		public void mostrarJob() {
+				System.out.println("JOB\nEspecializacao: "+getNome()+"\nAvaliacao: "+getRate()+"\n");
+		}
+		
+		public void atualizarJob(String att) {
+			setNome(att);
+		}
+		
+		public static Job deletarJob(Job job) {
+		job = null;
+		return job;
+		}
+	
 }
