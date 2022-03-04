@@ -7,9 +7,19 @@ public class Job {
 	private double rate;
 	
 	
+	// Metodo construtor
+	public Job(String nome) {
+		this.nome = nome;
+		rate = 0.00;
+	}
 	
 	
+	public String toString() {
+		return "Especializacao: "+nome+"\nAvaliacao: "+rate+"\n";
+	}
 	
+	
+	// GETTERS and SETTERS
 	public String getNome() {
 		return nome;
 	}

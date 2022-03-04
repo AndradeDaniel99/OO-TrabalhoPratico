@@ -3,73 +3,69 @@ package tp3;
 public abstract class Contato {
 	
 	
-	protected String nome;
-	protected String endereco;
-	protected String email;
-	protected String biografia;
-	protected int cpf;
-	protected int telefone;
+	protected static String nome;
+	protected static String endereco;
+	protected static String email;
+	protected static String biografia;
+	protected static String cpf;
+	protected static String telefone;
 	
 	
+	// Construtores
 	public Contato() {
 		nome ="desconhecido";
 		endereco = "desconhecido";
 		email = "desconhecido";
 		biografia = "desconhecido";
-		cpf = 0;
-		telefone = 0;
+		cpf = "00000000000";
+		telefone = "00000000000";
 	}
 	
-	public Contato(String nome, String endereco, String email, String biografia, int cpf, int telefone) {
-		this.nome = nome;
-		this.endereco = endereco;
-		this.email = email;
-		this.biografia = biografia;
-		this.cpf = cpf;
-		this.telefone = telefone;
-	}
-	
-	
-	public String toString() {
-		return "nome: "+ nome + "\nendereco: " + endereco + "\nemail: " + 
-				email+ "\nbiografia: " + biografia+ "\ncpf: " +cpf+ "\ntelefone: " +telefone+ "\n"; 
+	public Contato(String nome, String endereco, String email, String biografia, String cpf, String telefone) {
+		Contato.nome = nome;
+		Contato.endereco = endereco;
+		Contato.email = email;
+		Contato.biografia = biografia;
+		Contato.cpf = cpf;
+		Contato.telefone = telefone;
 	}
 	
 	
+	// GETTERS and SETTERS
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		Contato.nome = nome;
 	}
 	public String getEndereco() {
 		return endereco;
 	}
 	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+		Contato.endereco = endereco;
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		Contato.email = email;
 	}
 	public String getBiografia() {
 		return biografia;
 	}
 	public void setBiografia(String biografia) {
-		this.biografia = biografia;
+		Contato.biografia = biografia;
 	}
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
+	public void setCpf(String cpf) {
+		Contato.cpf = cpf;
 	}
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
+	public void setTelefone(String telefone) {
+		Contato.telefone = telefone;
 	}
 }

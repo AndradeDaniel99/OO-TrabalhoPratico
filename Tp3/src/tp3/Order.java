@@ -1,51 +1,29 @@
 package tp3;
 
-import java.util.Calendar;
-
 public class Order {
 
-	private Calendar data_emissao = Calendar.getInstance();
-	private Calendar data_order = Calendar.getInstance();
-	private String status;
 	private Cliente cliente;
 	private Worker worker;
 	private double valor;
 	private double rate;
 	
 	
+	// Metodo construtor
 	public Order(Cliente cliente, Worker worker) {
 		this.cliente = cliente;
 		this.worker = worker;
-		status = "Aberta";
 		valor = 0.00;
 		rate = 0.00;
 	}
 	
 	
 	public String toString() {
-		return "data de emissao: "+data_emissao+"\nData marcada: "+data_order+"\nStatus: "+status+"\nCliente: "+
-	cliente.getNome()+"\nMarido: "+worker.getNome()+"\nValor: "+valor+"\nAvaliacao: "+rate+"\n";
+		return "\nCliente: "+getCliente().getNome()+"\n"+getWorker().getJob().getNome()+ ": "+
+		getWorker().getNome()+"\nValor: "+getValor()+"\nAvaliacao: "+getRate()+"\n";
 	}
 	
 	
-	public Calendar getData_emissao() {
-		return data_emissao;
-	}
-	public void setData_emissao(Calendar data_emissao) {
-		this.data_emissao = data_emissao;
-	}
-	public Calendar getData_order() {
-		return data_order;
-	}
-	public void setData_order(Calendar data_order) {
-		this.data_order = data_order;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	// GETTERS and SETTERS
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -69,5 +47,23 @@ public class Order {
 	}
 	public void setRate(double rate) {
 		this.rate = rate;
+	}
+	
+	
+	// CRUD
+	public void cadastrarOrder() {
+		
+	}
+	
+	public void mostrarOrder() {
+			
+	}
+	
+	public void atualizarOrder() {
+		
+	}
+	
+	public void deletarOrder() {
+	
 	}
 }
