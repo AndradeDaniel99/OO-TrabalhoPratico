@@ -4,7 +4,9 @@ public class Job {
 
 	private String nome;
 	private String cpfs[] = new String [10];
-	private double rate;
+	private double rate = 0.0;
+	private double prerate = 0.0;
+	private int ordersCount = 0;
 	
 	
 	// Metodo construtor
@@ -42,6 +44,18 @@ public class Job {
 	}
 	public void setRate(double rate) {
 		this.rate = rate;
+	}
+	public double getPrerate() {
+		return prerate;
+	}
+	public void setPrerate(double prerate) {
+		this.prerate += prerate;
+	}
+	public int getOrdersCount() {
+		return ordersCount;
+	}
+	public void sumOrdersCount() {
+		this.ordersCount++;
 	}
 	
 	

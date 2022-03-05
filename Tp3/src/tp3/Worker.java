@@ -47,7 +47,7 @@ public final class Worker extends Contato {
 		return rate;
 	}
 	public void setRate(double rate) {
-		this.rate += rate;
+		this.rate = rate;
 	}
 	public Job getJob() {
 		return job;

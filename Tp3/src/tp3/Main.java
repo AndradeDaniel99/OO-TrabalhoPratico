@@ -1,12 +1,14 @@
 package tp3;
 
+// a main imprime testes no console. 
+// a impressao no console esta detalhada nos comentarios
 
 public class Main {
 	
 	static Cliente clientes[] = new Cliente [3];
-	static Worker workers[] = new Worker [2];
+	static Worker workers[] = new Worker [3];
 	static Job jobs[] = new Job[3];
-	static Order orders[] = new Order[1];
+	static Order orders[] = new Order[2];
 
 	public static void main(String[] args) {
 		
@@ -58,7 +60,6 @@ public class Main {
 		
 		
 		//CADASTRAR WORKER
-		Worker workers[] = new Worker [2];
 		for(int i=0; i<workers.length; i++) {
 			workers[i] = new Worker();
 		}
@@ -71,7 +72,9 @@ public class Main {
 		//ATUALIZAR WORKER
 		workers[0].atualizarWorker("nome", "novo nome de trabalhador1");
 		workers[1].atualizarWorker("nome", "novo nome de trabalhador2");
+		workers[1].atualizarWorker("cpf", "12344667891");
 		workers[1].atualizarWorker(jobs, "mecanico premium");
+		workers[2].atualizarWorker(jobs, "mecanico premium");
 		System.out.println(workers[0]);
 		
 		
@@ -84,6 +87,7 @@ public class Main {
 		
 		//CADASTRAR ORDER
 		orders[0] = Order.cadastrarOrder(clientes[1], workers[1], 99.99, 4.8);
+		orders[1] = Order.cadastrarOrder(clientes[1], workers[2], 99.99, 5.2);
 		
 		
 		//MOSTRAR ORDER

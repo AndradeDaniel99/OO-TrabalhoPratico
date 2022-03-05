@@ -54,9 +54,17 @@ public class Order {
 	public static Order cadastrarOrder(Cliente cliente, Worker worker, double valor, double rate) {
 		Order order = new Order(cliente, worker, valor);
 		order.rate = rate;
+		
+		// AQUI A FUNCAO CALCULA A AVALIACAO DO TRABALHADOR
 		worker.sumOrders_count();
 		worker.setPrerate(rate);
 		worker.setRate(worker.getPrerate()/worker.getOrders_count());
+		
+		//E A AVALIACAO DA ESPECIALIZACAO
+		worker.getJob().setPrerate(worker.getRate());
+		worker.getJob().sumOrdersCount();
+		worker.getJob().setRate(worker.getJob().getPrerate()/worker.getJob().getOrdersCount());
+		
 		cliente.setOrder(order);
 		return order;
 	}
@@ -83,9 +91,16 @@ public class Order {
 			if (workers[i]!=null) {
 				if (workers[i].getNome()==att) {
 					this.setWorker(workers[i]);
+					
+					// CALCULO DA AVALIACAO DO TRABALHADOR = prerate / orders_count
 					this.getWorker().sumOrders_count();
 					this.getWorker().setPrerate(rate);
 					this.getWorker().setRate(this.getWorker().getPrerate()/this.getWorker().getOrders_count());
+					
+					//E A AVALIACAO DA ESPECIALIZACAO = prerate / ordersCount
+					this.getWorker().getJob().setPrerate(rate);
+					this.getWorker().getJob().sumOrdersCount();
+					this.getWorker().getJob().setRate(this.getWorker().getJob().getPrerate()/this.getWorker().getJob().getOrdersCount());
 				}
 			}
 		}
