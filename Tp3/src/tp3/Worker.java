@@ -76,30 +76,30 @@ public final class Worker extends Contato {
 	
 	public void atualizarWorker(String atributo, String att) {
 		switch(atributo) {
-		case "nome":
-			setNome(att);
-			break;
-		case "email":
-			setEmail(att);
-			break;
-		case "biografia":
-			setBiografia(att);
-			break;
-		case "endereco":
-			setEndereco(att);
-			break;
-		case "cpf":
-			setCpf(att);
-			break;
-		case "telefone":
-			setTelefone(att);
-			break;
-		case "job":
-			job.atualizarJob(att);
-			break;
-		default:
-			break;
-	}
+			case "nome":
+				setNome(att);
+				break;
+			case "email":
+				setEmail(att);
+				break;
+			case "biografia":
+				setBiografia(att);
+				break;
+			case "endereco":
+				setEndereco(att);
+				break;
+			case "cpf":
+				setCpf(att);
+				break;
+			case "telefone":
+				setTelefone(att);
+				break;
+			//case "job":
+			//	job.atualizarJob(att);
+			//	break;
+			default:
+				break;
+		}
 	}
 	
 	public static Worker deletarWorker(Worker worker) {

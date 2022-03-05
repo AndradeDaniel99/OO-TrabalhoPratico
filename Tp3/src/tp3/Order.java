@@ -9,16 +9,16 @@ public class Order {
 	
 	
 	// Metodo construtor
-	public Order(Cliente cliente, Worker worker) {
+	public Order(Cliente cliente, Worker worker, double valor) {
 		this.cliente = cliente;
 		this.worker = worker;
-		valor = 0.00;
+		this.valor = valor;
 		rate = 0.00;
 	}
 	
 	
 	public String toString() {
-		return "\nCliente: "+getCliente().getNome()+"\n"+getWorker().getJob().getNome()+ ": "+
+		return "ORDER\nCliente: "+getCliente().getNome()+"\n"+getWorker().getJob().getNome()+ ": "+
 		getWorker().getNome()+"\nValor: "+getValor()+"\nAvaliacao: "+getRate()+"\n";
 	}
 	
@@ -51,19 +51,31 @@ public class Order {
 	
 	
 	// CRUD
-	public void cadastrarOrder() {
-		
+	public static Order cadastrarOrder(Cliente cliente, Worker worker, double valor, double rate) {
+		Order order = new Order(cliente, worker, valor);
+		order.rate = rate;
+		return order;
 	}
 	
 	public void mostrarOrder() {
-			
+			System.out.println("ORDER\nCliente: "+getCliente().getNome()+"\n"+getWorker().getJob().getNome()+ ": "+
+		getWorker().getNome()+"\nValor: "+getValor()+"\nAvaliacao: "+getRate()+"\n");
 	}
 	
-	public void atualizarOrder() {
-		
+	/*
+	public void atualizarOrder(String atributo, String att) {
+		switch(atributo) {
+			case "cliente":
+				
+				break;
+			default:
+				break;
+		}
 	}
+	*/
 	
-	public void deletarOrder() {
-	
+	public static Order deletarOrder(Order order) {
+		order = null;
+		return order;
 	}
 }
