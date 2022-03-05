@@ -58,21 +58,31 @@ public class Order {
 	}
 	
 	public void mostrarOrder() {
-			System.out.println("ORDER\nCliente: "+getCliente().getNome()+"\n"+getWorker().getJob().getNome()+ ": "+
+			System.out.println("ORDER\nCliente: "+cliente.getNome()+"\n"+getWorker().getJob().getNome()+ ": "+
 		getWorker().getNome()+"\nValor: "+getValor()+"\nAvaliacao: "+getRate()+"\n");
 	}
 	
-	/*
-	public void atualizarOrder(String atributo, String att) {
-		switch(atributo) {
-			case "cliente":
-				
-				break;
-			default:
-				break;
+	
+	public void atualizarOrder(Cliente clientes[], String att) {
+		for (int i = 0; i < clientes.length; i++) {
+			if (clientes[i]!=null) {
+				if (clientes[i].getNome()==att) {
+					this.setCliente(clientes[i]);
+				}
+			}
 		}
 	}
-	*/
+	
+	public void atualizarOrder(Worker workers[], String att) {
+		for (int i = 0; i < workers.length; i++) {
+			if (workers[i]!=null) {
+				if (workers[i].getNome()==att) {
+					this.setWorker(workers[i]);
+				}
+			}
+		}
+	}
+	
 	
 	public static Order deletarOrder(Order order) {
 		order = null;

@@ -3,12 +3,12 @@ package tp3;
 public abstract class Contato {
 	
 	
-	protected static String nome;
-	protected static String endereco;
-	protected static String email;
-	protected static String biografia;
-	protected static String cpf;
-	protected static String telefone;
+	protected String nome;
+	protected String endereco;
+	protected String email;
+	protected String biografia;
+	protected String cpf;
+	protected String telefone;
 	
 	
 	// Construtores
@@ -22,12 +22,12 @@ public abstract class Contato {
 	}
 	
 	public Contato(String nome, String endereco, String email, String biografia, String cpf, String telefone) {
-		Contato.nome = nome;
-		Contato.endereco = endereco;
-		Contato.email = email;
-		Contato.biografia = biografia;
-		Contato.cpf = cpf;
-		Contato.telefone = telefone;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.email = email;
+		this.biografia = biografia;
+		this.cpf = cpf;
+		this.telefone = telefone;
 	}
 	
 	
@@ -36,36 +36,36 @@ public abstract class Contato {
 		return nome;
 	}
 	public void setNome(String nome) {
-		Contato.nome = nome;
+		this.nome = nome;
 	}
 	public String getEndereco() {
 		return endereco;
 	}
 	public void setEndereco(String endereco) {
-		Contato.endereco = endereco;
+		this.endereco = endereco;
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
-		Contato.email = email;
+		this.email = email;
 	}
 	public String getBiografia() {
 		return biografia;
 	}
 	public void setBiografia(String biografia) {
-		Contato.biografia = biografia;
+		this.biografia = biografia;
 	}
 	public String getCpf() {
 		return cpf;
 	}
 	public void setCpf(String cpf) {
-		Contato.cpf = cpf;
+		this.cpf = cpf;
 	}
 	public String getTelefone() {
 		return telefone;
 	}
 	public void setTelefone(String telefone) {
-		Contato.telefone = telefone;
+		this.telefone = telefone;
 	}
 }

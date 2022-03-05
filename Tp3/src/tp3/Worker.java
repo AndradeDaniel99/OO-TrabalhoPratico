@@ -51,21 +51,6 @@ public final class Worker extends Contato {
 	
 	
 	// CRUD
-	public static Worker cadastrarWorker(String nome, String email, String biografia, String endereco, String cpf, String telefone, Job job) {
-		Worker worker = new Worker();
-		
-		worker.setNome(nome);
-		worker.setEmail(email);
-		worker.setBiografia(biografia);
-		worker.setEndereco(endereco);
-		worker.setCpf(cpf);
-		worker.setTelefone(telefone);
-		worker.setJob(job);
-		worker.setOrders_count(0);
-		worker.setRate(0);
-		
-		return worker;
-	}
 	
 	public void mostrarWorker() {
 			System.out.println("\nWORKER\nnome: "+ getNome() + "\nendereco: " + getEndereco() + "\nemail: " + getEmail()+ 
@@ -94,13 +79,24 @@ public final class Worker extends Contato {
 			case "telefone":
 				setTelefone(att);
 				break;
-			//case "job":
-			//	job.atualizarJob(att);
-			//	break;
 			default:
 				break;
 		}
 	}
+	
+	
+	public void atualizarWorker(Job jobs[], String att) {
+		for (int i = 0; i < jobs.length; i++) {
+			if (jobs[i]!=null) {
+				if (jobs[i].getNome()==att) {
+					this.setJob(jobs[i]);
+					break;
+				}
+			}
+			
+		}
+	}
+	
 	
 	public static Worker deletarWorker(Worker worker) {
 		worker = null;

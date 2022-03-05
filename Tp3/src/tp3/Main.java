@@ -3,26 +3,28 @@ package tp3;
 
 public class Main {
 	
-	static Cliente clientes[] = new Cliente [1];
-	static Worker workers[] = new Worker [1];
-	static Job jobs[] = new Job[2];
+	static Cliente clientes[] = new Cliente [3];
+	static Worker workers[] = new Worker [2];
+	static Job jobs[] = new Job[3];
 	static Order orders[] = new Order[1];
 
 	public static void main(String[] args) {
 		
 		//CADASTRAR CLIENTES
-		clientes[0]=Cliente.cadastrarCliente("teste", "teste", "teste", "teste", "teste", "teste");
+		for(int i=0; i<clientes.length; i++) {
+			clientes[i] = new Cliente();
+		}
 		
 		
 		//MOSTRAR CLIENTES
 		clientes[0].mostrarCliente();
-		// OU AINDA:
 		//System.out.println(clientes[0]);
 		
 		
 		//ATUALIZAR CLIENTE
-		clientes[0].atualizarCliente("nome", "novo nome");
-		clientes[0].atualizarCliente("email", "novoemail@email.com");
+		clientes[0].atualizarCliente("nome", "novo nome de cliente 1");
+		clientes[1].atualizarCliente("nome", "novo nome de cliente 2");
+		clientes[2].atualizarCliente("nome", "jose");
 		System.out.println(clientes[0]);
 		
 		
@@ -36,6 +38,7 @@ public class Main {
 		//CADASTRAR JOB
 		jobs[0] = Job.cadastrarJob("encanador");
 		jobs[1] = Job.cadastrarJob("mecanico");
+		jobs[2] = Job.cadastrarJob("mecanico premium");
 		
 		
 		//MOSTRAR JOB
@@ -55,7 +58,10 @@ public class Main {
 		
 		
 		//CADASTRAR WORKER
-		workers[0]=Worker.cadastrarWorker("teste", "teste", "teste", "teste", "teste", "teste", jobs[1]);
+		Worker workers[] = new Worker [2];
+		for(int i=0; i<workers.length; i++) {
+			workers[i] = new Worker();
+		}
 		
 		
 		//MOSTRAR WORKER
@@ -63,8 +69,9 @@ public class Main {
 		
 		
 		//ATUALIZAR WORKER
-		workers[0].atualizarWorker("nome", "novo nome de trabalhador");
-		workers[0].atualizarWorker("job", "mecanico premium");
+		workers[0].atualizarWorker("nome", "novo nome de trabalhador1");
+		workers[1].atualizarWorker("nome", "novo nome de trabalhador2");
+		workers[1].atualizarWorker(jobs, "mecanico premium");
 		System.out.println(workers[0]);
 		
 		
@@ -76,7 +83,21 @@ public class Main {
 		
 		
 		//CADASTRAR ORDER
+		orders[0] = Order.cadastrarOrder(clientes[1], workers[1], 99.99, 4.8);
 		
+		
+		//MOSTRAR ORDER
+		orders[0].mostrarOrder();
+		
+		
+		//ATUALIZAR ORDER
+		orders[0].atualizarOrder(clientes, "jose");
+		System.out.println(orders[0]);
+		
+		
+		//DELETAR ORDER
+		orders[0] = Order.deletarOrder(orders[0]);
+		System.out.println(workers[0]+"\n");
 		
 	}
 

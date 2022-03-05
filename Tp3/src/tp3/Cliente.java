@@ -42,41 +42,31 @@ public final class Cliente extends Contato {
 
 	
 	// CRUD
-	public static Cliente cadastrarCliente(String nome, String email, String biografia, String endereco, String cpf, String telefone) {
-		Cliente cliente = new Cliente();
-		cliente.setNome(nome);
-		cliente.setEmail(email);
-		cliente.setBiografia(biografia);
-		cliente.setEndereco(endereco);
-		cliente.setCpf(cpf);
-		cliente.setTelefone(telefone);
-		return cliente;
-	}
 	
 	public void mostrarCliente() {
-		System.out.println("CLIENTE\nnome: "+ getNome() + "\nendereco: " + getEndereco() + "\nemail: " + getEmail()+ 
-				"\nbiografia: " + getBiografia()+ "\ncpf: " +getCpf()+ "\ntelefone: " +getTelefone()+ "\n");
+		System.out.println("CLIENTE\nnome: "+ this.getNome() + "\nendereco: " + this.getEndereco() + "\nemail: " + this.getEmail()+ 
+				"\nbiografia: " + this.getBiografia()+ "\ncpf: " +this.getCpf()+ "\ntelefone: " +this.getTelefone()+ "\n");
 	}
 	
 	public void atualizarCliente(String atributo, String att) {
 		switch(atributo) {
 			case "nome":
-				setNome(att);
+				this.setNome(att);
 				break;
 			case "email":
-				setEmail(att);
+				this.setEmail(att);
 				break;
 			case "biografia":
-				setBiografia(att);
+				this.setBiografia(att);
 				break;
 			case "endereco":
-				setEndereco(att);
+				this.setEndereco(att);
 				break;
 			case "cpf":
-				setCpf(att);
+				this.setCpf(att);
 				break;
 			case "telefone":
-				setTelefone(att);
+				this.setTelefone(att);
 				break;
 			default:
 				break;
