@@ -37,8 +37,13 @@ public final class Cliente extends Contato {
 	public Order[] getOrders() {
 		return orders;
 	}
-	public void setOrders(Order[] orders) {
-		this.orders = orders;
+	public void setOrder(Order order) {
+		for (int i = 0; i < orders.length; i++) {
+			if (orders[i]==null) {
+				orders[i]=order;
+				break;
+			}
+		}
 	}
 
 	

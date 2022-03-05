@@ -2,8 +2,9 @@ package tp3;
 
 public final class Worker extends Contato {
 
-	private int orders_count;
-	private double rate;
+	private int orders_count=0;
+	private double prerate=0.0;
+	private double rate=0.0;
 	private Job job;
 	
 	
@@ -33,14 +34,20 @@ public final class Worker extends Contato {
 	public int getOrders_count() {
 		return orders_count;
 	}
-	public void setOrders_count(int orders_count) {
-		this.orders_count = orders_count;
+	public void sumOrders_count() {
+		this.orders_count++;
+	}
+	public double getPrerate() {
+		return prerate;
+	}
+	public void setPrerate(double prerate) {
+		this.prerate += prerate;
 	}
 	public double getRate() {
 		return rate;
 	}
 	public void setRate(double rate) {
-		this.rate = rate;
+		this.rate += rate;
 	}
 	public Job getJob() {
 		return job;
