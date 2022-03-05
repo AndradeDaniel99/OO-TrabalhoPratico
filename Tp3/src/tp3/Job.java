@@ -3,7 +3,7 @@ package tp3;
 public class Job {
 
 	private String nome;
-	private int cpfs[] = new int[10];
+	private String cpfs[] = new String [10];
 	private double rate;
 	
 	
@@ -26,11 +26,16 @@ public class Job {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int[] getIds() {
+	public String[] getCpfs() {
 		return cpfs;
 	}
-	public void setIds(int[] ids) {
-		this.cpfs = ids;
+	public void setCpf(String cpf) {
+		for (int i = 0; i < cpfs.length; i++) {
+			if (cpfs[i]==null) {
+				cpfs[i] = cpf;
+				break;
+			}
+		}
 	}
 	public double getRate() {
 		return rate;
@@ -38,6 +43,8 @@ public class Job {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
+	
+	
 	
 	
 	// CRUD

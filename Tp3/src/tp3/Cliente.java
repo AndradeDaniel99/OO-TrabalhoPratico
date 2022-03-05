@@ -5,6 +5,7 @@ public final class Cliente extends Contato {
 	private Order orders[] = new Order[20];
 	
 
+	// CONSTRUTORES
 	public Cliente() {
 		nome ="desconhecido";
 		endereco = "desconhecido";
@@ -44,8 +45,9 @@ public final class Cliente extends Contato {
 	// CRUD
 	
 	public void mostrarCliente() {
-		System.out.println("CLIENTE\nnome: "+ this.getNome() + "\nendereco: " + this.getEndereco() + "\nemail: " + this.getEmail()+ 
-				"\nbiografia: " + this.getBiografia()+ "\ncpf: " +this.getCpf()+ "\ntelefone: " +this.getTelefone()+ "\n");
+		System.out.println("CLIENTE\nnome: "+ this.getNome() + "\nendereco: " + this.getEndereco() + 
+				"\nemail: " + this.getEmail()+ "\nbiografia: " + this.getBiografia()+ 
+				"\ncpf: " +this.getCpf()+ "\ntelefone: " +this.getTelefone()+ "\n");
 	}
 	
 	public void atualizarCliente(String atributo, String att) {

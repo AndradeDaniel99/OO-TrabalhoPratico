@@ -84,12 +84,20 @@ public final class Worker extends Contato {
 		}
 	}
 	
-	
+	// SOBRECARGA DO METODO
 	public void atualizarWorker(Job jobs[], String att) {
+		
+		// AQUI A FUNCAO DELETA O CPF DO TRABALHADOR DA LISTA DE CPFS DA ANTIGA ESPECIALIZACAO
+		this.getJob().setCpf(null);
+		
 		for (int i = 0; i < jobs.length; i++) {
 			if (jobs[i]!=null) {
 				if (jobs[i].getNome()==att) {
+					
+					//AQUI A FUNCAO ATUALIZA A NOVA ESPECIALIZACAO DO TRABALHADOR, 
+					// E ADICIONA O CPF DELE NA LISTA DE CPFS DA NOVA ESPECIALIZACAO.
 					this.setJob(jobs[i]);
+					jobs[i].setCpf(this.getCpf());
 					break;
 				}
 			}

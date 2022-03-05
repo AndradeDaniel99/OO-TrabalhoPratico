@@ -99,6 +99,13 @@ public class Main {
 		orders[0] = Order.deletarOrder(orders[0]);
 		System.out.println(workers[0]+"\n");
 		
+		
+		// IMPRIMIR LISTA DE CPFS DE TRABALHADORES CADASTRADOS COMO MECANICO PREMIUM
+		String teste[] = jobs[2].getCpfs();
+		for (int i = 0; i < teste.length; i++) {
+			System.out.println(teste[i]);
+		}
+		
 	}
 
 }
