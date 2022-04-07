@@ -18,13 +18,15 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 	private JList<String> listaClientesCadastrados;
 	private JList<String> listaWorkerCadastrados;
 	String[] listaNomes = new String[50];
+	private Cliente c[] = new Cliente[50];
+	private Worker w[];
 	
 	public void mostrarDados(Cliente clientes[]) {
 		for(int i =0; i<clientes.length; i++) {
 			if(clientes[i]!=null) {
 				listaNomes[i]=clientes[i].getNome();
-			}
-				
+				c[i]=clientes[i];
+			}		
 		}
 		listaClientesCadastrados = new JList<String>(listaNomes);
 		janela = new JFrame("Clientes");
@@ -60,6 +62,7 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 		for(int i =0; i<workers.length; i++) {
 			if(workers[i]!=null) {
 				listaNomes[i]=workers[i].getNome();
+				w[i]=workers[i];
 			}
 		}
 		listaWorkerCadastrados = new JList<String>(listaNomes);
@@ -103,10 +106,7 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 		
 		//Cadastro de novo cliente
 		if(src == cadastroCliente)
-			JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n", null, 
-					JOptionPane.INFORMATION_MESSAGE);
-			//new TelaDetalhePessoa().inserirEditar(1, dados, this, 0);
+			new TelaDetalheContato().inserirEditar(1, c, this, 0);
 
 		//Cadastro de novo worker
 		if(src == cadastroWorker)

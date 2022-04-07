@@ -48,6 +48,7 @@ public final class Cliente extends Contato {
 	
 	// CRUD
 	
+	
 	public void mostrarCliente() {
 		System.out.println("CLIENTE\nnome: "+ this.getNome() + "\nendereco: " + this.getEndereco() + 
 				"\nemail: " + this.getEmail()+ "\nbiografia: " + this.getBiografia()+ 
