@@ -20,6 +20,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//CADASTRAR CLIENTES
+		//teste 
+		
 		for(int i=0; i<clientes.length; i++) {
 			clientes[i] = new Cliente();
 		}
