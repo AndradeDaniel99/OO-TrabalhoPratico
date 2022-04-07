@@ -33,6 +33,10 @@ public class Tp1 {
 		temasEPalavras[0][8]= "touro";
 		temasEPalavras[0][9]= "tartaruga";
 		temasEPalavras[0][10]= "tigre";
+		temasEPalavras[0][11]= "cabrito";
+		temasEPalavras[0][12]= "tubarao";
+		temasEPalavras[0][13]= "pantera";
+		temasEPalavras[0][14]= "galinha";
 		criarModel();
 		
 		Scanner ler = new Scanner(System.in);
@@ -539,7 +543,5 @@ public class Tp1 {
 			erro=0;
 			
 		}while(game==0);
-		
-		
 	}
 }
