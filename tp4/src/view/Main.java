@@ -162,15 +162,9 @@ public class Main implements ActionListener {
 			new TelaContato().mostrarDados(clientes);
 		
 		if(src == workerButton)
-			JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n", null, 
-					JOptionPane.INFORMATION_MESSAGE);
-			//new TelaContato().mostrarDados(workers);
+			new TelaContato().mostrarDados(workers);
 		
 		if(src == jobButton)
-			JOptionPane.showMessageDialog(null, 
-					"Ainda precisam ser implementadas as funcionalidades\n", null, 
-					JOptionPane.INFORMATION_MESSAGE);
-			//new TelaContato().mostrarDados(jobs);
+			new TelaJob().mostrarDados(jobs);
 	}
 }
