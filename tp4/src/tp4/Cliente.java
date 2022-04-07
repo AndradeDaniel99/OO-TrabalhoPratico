@@ -26,7 +26,6 @@ public final class Cliente extends Contato {
 	}
 	
 
-
 	public String toString() {
 		return "CLIENTE\nnome: "+ getNome() + "\nendereco: " + getEndereco() + "\nemail: " + getEmail()+ 
 				"\nbiografia: " + getBiografia()+ "\ncpf: " +getCpf()+ "\ntelefone: " +getTelefone()+ "\n"; 

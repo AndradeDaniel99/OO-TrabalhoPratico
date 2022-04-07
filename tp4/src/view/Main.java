@@ -1,23 +1,57 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-import tp4.Cliente;
-import tp4.Job;
-import tp4.Order;
-import tp4.Worker;
+import tp4.*;
 
 // a main imprime testes no console. 
 // a impressao no console esta detalhada nos comentarios
 
-public class Main {
+public class Main implements ActionListener {
+	
 	
 	static Cliente clientes[] = new Cliente [3];
 	static Worker workers[] = new Worker [3];
 	static Job jobs[] = new Job[3];
 	static Order orders[] = new Order[2];
+	
+	
+	private static JFrame janela = new JFrame("Marido de Aluguel 1.0");
+	private static JLabel titulo = new JLabel("Menu principal");
+	private static JButton clienteButton = new JButton("Cliente");
+	private static JButton workerButton = new JButton("Marido de aluguel");
+	private static JButton jobButton = new JButton("Especialidades");
+	
+	public Main() {
+		titulo.setFont(new Font("Arial", Font.BOLD, 20));
+		titulo.setBounds(120, 10, 150, 30);
+		clienteButton.setBounds(120, 60, 150, 30);
+		workerButton.setBounds(120, 100, 150, 30);
+		jobButton.setBounds(120, 140, 150, 30);
+		
+		janela.setLayout(null);
+		
+		janela.add(titulo);
+		janela.add(clienteButton);
+		janela.add(workerButton);
+		janela.add(jobButton);
+		
+		janela.setSize(400, 250);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setVisible(true);
+	}
+	
 
 	public static void main(String[] args) {
+		
+		Main menu = new Main();
+		
+		clienteButton.addActionListener(menu);
+		workerButton.addActionListener(menu);
+		jobButton.addActionListener(menu);
+		
 		
 		//CADASTRAR CLIENTES
 		//teste 
@@ -26,13 +60,6 @@ public class Main {
 			clientes[i] = new Cliente();
 		}
 		
-		JFrame f=new JFrame();
-		JButton b=new JButton("click");
-		b.setBounds(130,100,100, 40);
-		f.add(b);
-		f.setSize(400,500);
-		f.setLayout(null);
-		f.setVisible(true);
 		
 		//MOSTRAR CLIENTES
 		clientes[0].mostrarCliente();
@@ -128,4 +155,22 @@ public class Main {
 		
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
+		
+		if(src == clienteButton)
+			new TelaContato().mostrarDados(clientes);
+		
+		if(src == workerButton)
+			JOptionPane.showMessageDialog(null, 
+					"Ainda precisam ser implementadas as funcionalidades\n", null, 
+					JOptionPane.INFORMATION_MESSAGE);
+			//new TelaContato().mostrarDados(workers);
+		
+		if(src == jobButton)
+			JOptionPane.showMessageDialog(null, 
+					"Ainda precisam ser implementadas as funcionalidades\n", null, 
+					JOptionPane.INFORMATION_MESSAGE);
+			//new TelaContato().mostrarDados(jobs);
+	}
 }
