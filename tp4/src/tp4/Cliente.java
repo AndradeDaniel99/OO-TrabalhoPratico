@@ -27,8 +27,7 @@ public final class Cliente extends Contato {
 	
 
 	public String toString() {
-		return "CLIENTE\nnome: "+ getNome() + "\nendereco: " + getEndereco() + "\nemail: " + getEmail()+ 
-				"\nbiografia: " + getBiografia()+ "\ncpf: " +getCpf()+ "\ntelefone: " +getTelefone()+ "\n"; 
+		return getNome(); 
 	}
 	
 	
@@ -47,7 +46,6 @@ public final class Cliente extends Contato {
 
 	
 	// CRUD
-	
 	
 	public void mostrarCliente() {
 		System.out.println("CLIENTE\nnome: "+ this.getNome() + "\nendereco: " + this.getEndereco() + 

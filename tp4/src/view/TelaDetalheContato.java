@@ -36,6 +36,11 @@ public class TelaDetalheContato implements ActionListener {
 	private Cliente clientes[] = new Cliente[50];
 	private Worker workers[];
 	
+	public void setPosicao(int posicao) {
+		this.posicao = posicao;
+	}
+	
+	
 	public void inserirEditar(int op, Cliente c[], TelaContato p, int pos) {
 
 		for(int i=0; i<c.length; i++) {
@@ -54,12 +59,12 @@ public class TelaDetalheContato implements ActionListener {
 
 		//Preenche dados com dados do cliente clicado
 		if (op == 2) {
-			valorNome = new JTextField(c[pos].getNome(), 200);
-			valorEmail = new JTextField(c[pos].getEmail(), 200);
-			valorEnd = new JTextField(c[pos].getEndereco(),200);
-			valorCPF = new JTextField(String.valueOf(c[pos].getCpf()), 200);
-			valorBio = new JTextField(String.valueOf(c[pos].getBiografia()), 200);
-			valorTelefone = new JTextField(String.valueOf(c[pos].getTelefone()), 10);			
+			valorNome = new JTextField(clientes[pos].getNome(), 200);
+			valorEmail = new JTextField(clientes[pos].getEmail(), 200);
+			valorEnd = new JTextField(clientes[pos].getEndereco(),200);
+			valorCPF = new JTextField(String.valueOf(clientes[pos].getCpf()), 200);
+			valorBio = new JTextField(String.valueOf(clientes[pos].getBiografia()), 200);
+			valorTelefone = new JTextField(String.valueOf(clientes[pos].getTelefone()), 10);			
 
 		}  else { //Nao preenche com dados
 
@@ -84,7 +89,7 @@ public class TelaDetalheContato implements ActionListener {
 		labelEmail.setBounds(30, 110, 150, 25);
 		valorEmail.setBounds(180, 110, 180, 25);
 		labelTelefone.setBounds(30, 140, 150, 25);
-		valorTelefone.setBounds(210, 140, 65, 25);
+		valorTelefone.setBounds(180, 140, 180, 25);
 
 		//Coloca os campos relacionados a endereco se aluno
 
@@ -116,6 +121,7 @@ public class TelaDetalheContato implements ActionListener {
 
 		botaoSalvar.addActionListener(this);
 		botaoExcluir.addActionListener(this);
+		
 	}
 	
 	/*
@@ -224,24 +230,22 @@ public class TelaDetalheContato implements ActionListener {
 		if(src == botaoSalvar) {
 			try {
 				boolean res;
+				int i, count=0;
 				if(opcao == 1) {//cadastro de novo cliente
-					cont=0;
-					for(int i=0; i<clientes.length; i++) {
-						if(clientes[i]==null) {
-							clientes[i].setNome(valorNome.getText());
-							clientes[i].setBiografia(valorBio.getText());
-							clientes[i].setCpf(valorCPF.getText());
-							clientes[i].setEmail(valorEmail.getText());
-							clientes[i].setEndereco(valorEnd.getText());
-							clientes[i].setTelefone(valorTelefone.getText());
-							cont=1;
-						}
-						if(cont==1)
-							break;
-					}
+				for(i=0; i<10; i++) {
+					count++;
+					if(Main.clientes[i]==null)
+						break;
+				}
+				Main.clientes[count].setNome(valorNome.getText());
+				Main.clientes[count].setBiografia(valorBio.getText());
+				Main.clientes[count].setCpf(valorCPF.getText());
+				Main.clientes[count].setEmail(valorEmail.getText());
+				Main.clientes[count].setEndereco(valorEnd.getText());
+				Main.clientes[count].setTelefone(valorTelefone.getText());
 				} else if (opcao == 3){//cadastro de novo marido
 					cont=0;
-					for(int i=0; i<workers.length; i++) {
+					for(i=0; i<workers.length; i++) {
 						if(workers[i]==null) {
 							workers[i].setNome(valorNome.getText());
 							workers[i].setBiografia(valorBio.getText());
@@ -255,12 +259,12 @@ public class TelaDetalheContato implements ActionListener {
 							break;
 					}
 				} else if (opcao == 2) { // edicao de cliente
-					clientes[posicao].atualizarCliente("nome", valorNome.getText());
-					clientes[posicao].atualizarCliente("biografia", valorBio.getText());
-					clientes[posicao].atualizarCliente("cpf", valorCPF.getText());
-					clientes[posicao].atualizarCliente("email", valorEmail.getText());
-					clientes[posicao].atualizarCliente("endereco", valorEnd.getText());
-					clientes[posicao].atualizarCliente("telefone", valorTelefone.getText());
+					Main.clientes[posicao].atualizarCliente("nome", valorNome.getText());
+					Main.clientes[posicao].atualizarCliente("biografia", valorBio.getText());
+					Main.clientes[posicao].atualizarCliente("cpf", valorCPF.getText());
+					Main.clientes[posicao].atualizarCliente("email", valorEmail.getText());
+					Main.clientes[posicao].atualizarCliente("endereco", valorEnd.getText());
+					Main.clientes[posicao].atualizarCliente("telefone", valorTelefone.getText());
 				}
 				
 				else if (opcao == 4) { // edicao de marido

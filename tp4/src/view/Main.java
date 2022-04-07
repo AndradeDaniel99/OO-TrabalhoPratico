@@ -12,10 +12,20 @@ import tp4.*;
 public class Main implements ActionListener {
 	
 	
-	static Cliente clientes[] = new Cliente [3];
-	static Worker workers[] = new Worker [3];
-	static Job jobs[] = new Job[3];
-	static Order orders[] = new Order[2];
+	static Cliente clientes[] = new Cliente [10];
+	static Worker workers[] = new Worker [10];
+	static Job jobs[] = new Job[10];
+	static Order orders[] = new Order[10];
+	
+	static public String[] nomesCliente() {
+		String list[] = new String[10];
+		for(int i=0; i<10; i++) {
+			if(clientes[i]!=null) {
+				list[i]=clientes[i].getNome();
+			}
+		}
+		return list;
+	}
 	
 	
 	private static JFrame janela = new JFrame("Marido de Aluguel 1.0");
@@ -54,12 +64,11 @@ public class Main implements ActionListener {
 		
 		
 		//CADASTRAR CLIENTES
-		//teste 
-		
-		for(int i=0; i<clientes.length; i++) {
-			clientes[i] = new Cliente();
-		}
-		
+		Cliente vazio = new Cliente();
+		clientes[0] = vazio;
+		clientes[1] = vazio;
+		clientes[0].setNome("daniel");
+		clientes[2] = vazio;
 		
 		//MOSTRAR CLIENTES
 		clientes[0].mostrarCliente();

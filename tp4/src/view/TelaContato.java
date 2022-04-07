@@ -15,20 +15,21 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 	private JButton refreshCliente;
 	private JButton cadastroWorker;
 	private JButton refreshWorker;
-	private JList<String> listaClientesCadastrados;
-	private JList<String> listaWorkerCadastrados;
-	String[] listaNomes = new String[50];
-	private Cliente c[] = new Cliente[50];
-	private Worker w[];
+	public JList<String> listaClientesCadastrados;
+	public JList<String> listaWorkerCadastrados;
+	String[] listaNomes = new String[10];
+	private Cliente c[] = new Cliente[10];
+	private Worker w[] = new Worker[10];
+	
 	
 	public void mostrarDados(Cliente clientes[]) {
 		for(int i =0; i<clientes.length; i++) {
 			if(clientes[i]!=null) {
-				listaNomes[i]=clientes[i].getNome();
 				c[i]=clientes[i];
-			}		
+				listaNomes[i]=clientes[i].getNome();
+			}
 		}
-		listaClientesCadastrados = new JList<String>(listaNomes);
+		listaClientesCadastrados = new JList<String>(Main.nomesCliente());
 		janela = new JFrame("Clientes");
 		titulo = new JLabel("Clientes Cadastrados");
 		cadastroCliente = new JButton("Cadastrar");
@@ -37,7 +38,7 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(90, 10, 250, 30);
 		listaClientesCadastrados.setBounds(20, 50, 350, 120);
-		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		listaClientesCadastrados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaClientesCadastrados.setVisibleRowCount(10);
 
 		cadastroCliente.setBounds(70, 177, 100, 30);
@@ -117,7 +118,7 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 
 		// Atualiza a lista de nomes de clientes mostrada no JList
 		if(src == refreshCliente) {
-			listaClientesCadastrados.setListData(listaNomes);			
+			listaClientesCadastrados.setListData(Main.nomesCliente());
 			listaClientesCadastrados.updateUI();
 		}
 
@@ -126,15 +127,14 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 			listaWorkerCadastrados.setListData(listaNomes);
 			listaWorkerCadastrados.updateUI();
 		}
-
 	}
-	
+
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 
 		if(e.getValueIsAdjusting() && src == listaClientesCadastrados) {
-			//new TelaDetalhePessoa().inserirEditar(3, dados, this, 
-					//listaAlunosCadastrados.getSelectedIndex());
+			new TelaDetalheContato().inserirEditar(2, c, this, listaClientesCadastrados.getSelectedIndex());
+			
 		}
 
 		if(e.getValueIsAdjusting() && src == listaWorkerCadastrados) {
