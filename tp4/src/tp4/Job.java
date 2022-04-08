@@ -1,5 +1,10 @@
 package tp4;
 
+/**
+ * Classe que representa os dados de especialidades dos maridos de aluguel
+ * @author danieldeandradesouza
+ *
+ */
 public class Job {
 
 	private String nome;

@@ -1,5 +1,10 @@
 package tp4;
 
+/**
+ * Classe que representa dados de contato
+ * @author danieldeandradesouza
+ *
+ */
 public abstract class Contato {
 	
 	
@@ -11,7 +16,10 @@ public abstract class Contato {
 	protected String telefone;
 	
 	
-	// Construtores
+	/**
+	 * o primeiro construtor nao recebe parametros
+	 * o segundo construtor precisa de todos os parametros de atributos
+	 */
 	public Contato() {
 		nome ="desconhecido";
 		endereco = "desconhecido";
@@ -31,7 +39,10 @@ public abstract class Contato {
 	}
 	
 	
-	// GETTERS and SETTERS
+	/**
+	 * Getters e setters da classe
+	 * @return
+	 */
 	public String getNome() {
 		return nome;
 	}

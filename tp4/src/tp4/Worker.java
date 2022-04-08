@@ -1,5 +1,10 @@
 package tp4;
 
+/**
+ * classe que representa dados de trabalhadores
+ * @author danieldeandradesouza
+ *
+ */
 public final class Worker extends Contato {
 
 	private int orders_count=0;    //quantidade de servicos realizados

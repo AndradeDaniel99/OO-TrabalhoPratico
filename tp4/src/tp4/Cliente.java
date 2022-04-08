@@ -1,11 +1,21 @@
 package tp4;
 
+/**
+ * Classe modelo para abstrair dados de um cliente
+ * 
+ * @author danieldeandradesouza
+ * @version 1.0 (Apr 2022)
+ */
+
 public final class Cliente extends Contato {
 	
 	private Order orders[] = new Order[20];
 	
 
-	// CONSTRUTORES
+	/**
+	 * O primeiro construtor nao recebe parametro e inicializa valores arbitrarios
+	 * O segundo construtor precisa receber todos os parametros de atributos da classe
+	 */
 	public Cliente() {
 		nome ="desconhecido";
 		endereco = "desconhecido";
@@ -25,13 +35,18 @@ public final class Cliente extends Contato {
 		this.setTelefone(telefone);
 	}
 	
-
+/**
+ * @deprecated
+ */
 	public String toString() {
 		return getNome(); 
 	}
 	
 	
-	// GETTERS and SETTERS
+	/**
+	 * Getters e Setters da classe, no caso so tem order pq os outros foram herdados de Contato
+	 * @return lista de ordens de um cliente
+	 */
 	public Order[] getOrders() {
 		return orders;
 	}
@@ -45,14 +60,21 @@ public final class Cliente extends Contato {
 	}
 
 	
-	// CRUD
 	
+	/**
+	 * Imprime no console todos os dados de um cliente
+	 */
 	public void mostrarCliente() {
 		System.out.println("CLIENTE\nnome: "+ this.getNome() + "\nendereco: " + this.getEndereco() + 
 				"\nemail: " + this.getEmail()+ "\nbiografia: " + this.getBiografia()+ 
 				"\ncpf: " +this.getCpf()+ "\ntelefone: " +this.getTelefone()+ "\n");
 	}
 	
+	/**
+	 * atualiza os dados de um cliente
+	 * @param atributo
+	 * @param att
+	 */
 	public void atualizarCliente(String atributo, String att) {
 		switch(atributo) {
 			case "nome":
@@ -78,6 +100,11 @@ public final class Cliente extends Contato {
 		}
 	}
 	
+	/**
+	 * deleta um cliente
+	 * @param cliente
+	 * @return cliente nulo
+	 */
 	public static Cliente deletarCliente(Cliente cliente) {
 		cliente = null;
 		return cliente;

@@ -17,16 +17,6 @@ public class Main implements ActionListener {
 	static Job jobs[] = new Job[10];
 	static Order orders[] = new Order[10];
 	
-	static public String[] nomesCliente() {
-		String list[] = new String[10];
-		for(int i=0; i<10; i++) {
-			if(clientes[i]!=null) {
-				list[i]=clientes[i].getNome();
-			}
-		}
-		return list;
-	}
-	
 	
 	private static JFrame janela = new JFrame("Marido de Aluguel 1.0");
 	private static JLabel titulo = new JLabel("Menu principal");
@@ -51,6 +41,11 @@ public class Main implements ActionListener {
 		janela.setSize(400, 250);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
+		
+		clientes[0] = new Cliente();
+		clientes[1] = new Cliente();
+		clientes[1].setNome("daniel");
+		clientes[2] = new Cliente();
 	}
 	
 
@@ -64,11 +59,7 @@ public class Main implements ActionListener {
 		
 		
 		//CADASTRAR CLIENTES
-		Cliente vazio = new Cliente();
-		clientes[0] = vazio;
-		clientes[1] = vazio;
-		clientes[0].setNome("daniel");
-		clientes[2] = vazio;
+		
 		
 		//MOSTRAR CLIENTES
 		clientes[0].mostrarCliente();
@@ -78,7 +69,7 @@ public class Main implements ActionListener {
 		//ATUALIZAR CLIENTE
 		clientes[0].atualizarCliente("nome", "novo nome de cliente 1");
 		clientes[1].atualizarCliente("nome", "novo nome de cliente 2");
-		clientes[2].atualizarCliente("nome", "jose");
+		clientes[2].atualizarCliente("nome", "teste");
 		System.out.println(clientes[0]);
 		
 		

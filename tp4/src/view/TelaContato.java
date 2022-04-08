@@ -26,10 +26,12 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 		for(int i =0; i<clientes.length; i++) {
 			if(clientes[i]!=null) {
 				c[i]=clientes[i];
-				listaNomes[i]=clientes[i].getNome();
+				listaNomes[i]=c[i].getNome();
 			}
 		}
-		listaClientesCadastrados = new JList<String>(Main.nomesCliente());
+
+		
+		listaClientesCadastrados = new JList<>(listaNomes);
 		janela = new JFrame("Clientes");
 		titulo = new JLabel("Clientes Cadastrados");
 		cadastroCliente = new JButton("Cadastrar");
@@ -118,7 +120,7 @@ public class TelaContato implements ActionListener, ListSelectionListener {
 
 		// Atualiza a lista de nomes de clientes mostrada no JList
 		if(src == refreshCliente) {
-			listaClientesCadastrados.setListData(Main.nomesCliente());
+			listaClientesCadastrados.setListData(listaNomes);
 			listaClientesCadastrados.updateUI();
 		}
 

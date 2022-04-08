@@ -1,5 +1,10 @@
 package tp4;
 
+/**
+ * classe que representa dados de ordens 
+ * @author danieldeandradesouza
+ *
+ */
 public class Order {
 
 	private Cliente cliente;
